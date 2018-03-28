@@ -13,8 +13,14 @@ import { MenuItem } from 'material-ui/Menu';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setUser } from './redux/modules/user';
+import axios from 'axios';
 
 class SignInPage extends React.Component {
+  async componentDidMount() {
+    const response = await axios.get('/ping');
+    console.log('ping', response.data);
+  }
+
   render() {
     const { onSubmit } = this.props;
 
@@ -40,7 +46,7 @@ class SignInPage extends React.Component {
                         paragraph
                         style={{ marginBottom: 30 }}
                       >
-                        Login
+                        Sign In
                       </Typography>
                       <Typography
                         variant="body1"

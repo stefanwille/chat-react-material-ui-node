@@ -2,7 +2,7 @@ import React from 'react';
 
 import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
-import format from 'date-fns/format';
+import { format } from 'date-fns';
 
 const Message = ({ message }) => {
   const { user: { avatarUrl, userName }, timestamp, text } = message;
