@@ -1,4 +1,5 @@
 import STOCK_AVATARS from '../../StockAvatars';
+import _ from 'lodash';
 
 const marissa = { userName: 'marissa', avatarUrl: STOCK_AVATARS[2] };
 const jennifer = { userName: 'jennifer', avatarUrl: STOCK_AVATARS[3] };
@@ -28,6 +29,10 @@ export function addMessage(message) {
 function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case 'ADD_MESSAGE':
+      console.log('state', state);
+      if (state.some(message => _.isEqual(message, action.payload))) {
+        return state;
+      }
       return [...state, action.payload];
     default:
       return state;
