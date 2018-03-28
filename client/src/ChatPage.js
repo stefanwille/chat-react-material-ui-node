@@ -19,9 +19,10 @@ class ChatPage extends React.Component {
 
   onSubmit = formValues => {
     const id = uuidv1();
-    const { user } = this.props;
+    const { user, onMessageSubmitted } = this.props;
     const { text } = formValues;
     const message = { id, user, text, timestamp: new Date() };
+    onMessageSubmitted(message);
     this.socket.emit('chat message', message);
   };
 
@@ -74,6 +75,10 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
     ...stateProps,
     ...dispatchProps,
     ...ownProps,
+    onMessageSubmitted(message) {
+      console.log('message submitted', message);
+      dispatch(addMessage(message));
+    },
     onMessageReceived(message) {
       console.log('message received', message);
       dispatch(addMessage(message));

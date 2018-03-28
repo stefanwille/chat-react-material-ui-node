@@ -30,7 +30,8 @@ function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case 'ADD_MESSAGE':
       console.log('state', state);
-      if (state.some(message => _.isEqual(message, action.payload))) {
+      if (state.some(message => message.id === action.payload.id)) {
+        console.log('skippping');
         return state;
       }
       return [...state, action.payload];
