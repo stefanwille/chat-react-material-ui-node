@@ -18,11 +18,7 @@ const INITIAL_STATE = [
   }
 ];
 
-let id = 100;
-
 export function addMessage(message) {
-  id++;
-  message.id = id;
   return {
     type: 'ADD_MESSAGE',
     payload: message

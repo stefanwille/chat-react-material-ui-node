@@ -9,23 +9,24 @@ import { getMessages, addMessage } from './redux/modules/messages';
 import Button from 'material-ui/Button';
 import { withRouter } from 'react-router-dom';
 import io from 'socket.io-client';
+import uuidv1 from 'uuid/v1';
 
 class ChatPage extends React.Component {
   componentDidMount() {
     this.socket = io();
-    this.socket.emit('chat message', 'test msg from React');
-    this.socket.on('chat message', message => {
-      const { onMessageSubmit } = this.props;
-      onMessageSubmit({ text: message });
-    });
+    this.socket.on('chat message', this.props.onMessageReceived);
   }
 
   onSubmit = formValues => {
-    this.socket.emit('chat message', formValues.text);
+    const id = uuidv1();
+    const { user } = this.props;
+    const { text } = formValues;
+    const message = { id, user, text, timestamp: new Date() };
+    this.socket.emit('chat message', message);
   };
 
   render() {
-    const { messages, onMessageSubmit, onSignOut } = this.props;
+    const { messages, onSignOut } = this.props;
 
     return (
       <Grid container justify="center">
@@ -67,17 +68,14 @@ function mapDispatchToProps(dispatch, ownProps) {
 }
 
 function mergeProps(stateProps, dispatchProps, ownProps) {
-  const { user } = stateProps;
   const { dispatch } = dispatchProps;
 
   return {
     ...stateProps,
     ...dispatchProps,
     ...ownProps,
-    onMessageSubmit(formValues) {
-      const { text } = formValues;
-      const timestamp = new Date();
-      const message = { user, timestamp, text };
+    onMessageReceived(message) {
+      console.log('message received', message);
       dispatch(addMessage(message));
     }
   };
