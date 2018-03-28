@@ -8,8 +8,22 @@ import { getUser } from './redux/modules/user';
 import { getMessages, addMessage } from './redux/modules/messages';
 import Button from 'material-ui/Button';
 import { withRouter } from 'react-router-dom';
+import io from 'socket.io-client';
 
-class Chat extends React.Component {
+class ChatPage extends React.Component {
+  componentDidMount() {
+    this.socket = io();
+    this.socket.emit('chat message', 'test msg from React');
+    this.socket.on('chat message', message => {
+      const { onMessageSubmit } = this.props;
+      onMessageSubmit({ text: message });
+    });
+  }
+
+  onSubmit = formValues => {
+    this.socket.emit('chat message', formValues.text);
+  };
+
   render() {
     const { messages, onMessageSubmit, onSignOut } = this.props;
 
@@ -25,7 +39,7 @@ class Chat extends React.Component {
               </div>
               <Paper elevation={2} style={{ padding: 20 }}>
                 <MessageList messages={messages} />
-                <InputArea onSubmit={onMessageSubmit} />
+                <InputArea onSubmit={this.onSubmit} />
               </Paper>
             </Grid>
           </Grid>
@@ -70,5 +84,5 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(
-  withRouter(Chat)
+  withRouter(ChatPage)
 );

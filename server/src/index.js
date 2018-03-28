@@ -1,20 +1,20 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
-const app = express();
-
-// app.use(express.static(path.join(__dirname, 'build')));
-
-app.get('/ping', function(req, res) {
-  return res.send('pong');
-});
+var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+var port = 5000;
 
 app.get('/', function(req, res) {
-  res.send('Hello!');
+  res.sendFile(__dirname + '/index.html');
 });
 
-// app.get('/', function(req, res) {
-//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
-// });
+io.on('connection', function(socket) {
+  console.log('some client connected');
+  socket.on('chat message', function(msg) {
+    console.log('emitting message', msg);
+    io.emit('chat message', msg);
+  });
+});
 
-app.listen(5000);
+http.listen(port, function() {
+  console.log('listening on *:' + port);
+});

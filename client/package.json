@@ -10,7 +10,6 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "axios": "^0.18.0",
     "date-fns": "^1.29.0",
     "final-form": "^4.4.0",
     "material-ui": "^1.0.0-beta.38",
@@ -21,7 +20,9 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "socket.io": "^2.0.4",
+    "socket.io-client": "^2.0.4"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
