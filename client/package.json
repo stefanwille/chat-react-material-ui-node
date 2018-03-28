@@ -1,0 +1,27 @@
+{
+  "name": "chat-react-material-ui-node",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "final-form": "^4.4.0",
+    "material-ui": "^1.0.0-beta.38",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-final-form": "^3.1.5",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.1",
+    "redux": "^3.7.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "prettier": "^1.11.1"
+  }
+}
