@@ -1,5 +1,4 @@
 import STOCK_AVATARS from '../../StockAvatars';
-import _ from 'lodash';
 
 const marissa = { userName: 'marissa', avatarUrl: STOCK_AVATARS[2] };
 const jennifer = { userName: 'jennifer', avatarUrl: STOCK_AVATARS[3] };
