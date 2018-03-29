@@ -77,6 +77,11 @@ class SignInPage extends React.Component {
                               style={{ display: 'block' }}
                               margin="dense"
                               error={!!(meta.touched && meta.error)}
+                              onKeyDown={event => {
+                                if (event.key === 'Enter') {
+                                  handleSubmit();
+                                }
+                              }}
                               {...input}
                             />
                           );
