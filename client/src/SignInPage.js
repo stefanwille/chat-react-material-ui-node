@@ -23,6 +23,22 @@ class SignInPage extends React.Component {
         <Grid item style={{ flexGrow: 1, maxWidth: 500 }}>
           <Grid container>
             <Grid item xs={12}>
+              <Paper
+                elevation={1}
+                style={{
+                  padding: 25,
+                  backgroundColor: '#3f51b5'
+                }}
+              >
+                <Typography
+                  variant="title"
+                  component="h1"
+                  style={{ fontSize: 30, textAlign: 'center', color: 'white' }}
+                >
+                  Chat Demo
+                </Typography>
+              </Paper>
+
               <Form
                 onSubmit={onSubmit}
                 validate={values => {
@@ -36,7 +52,7 @@ class SignInPage extends React.Component {
                     <Paper elevation={1} style={{ padding: 50 }}>
                       <Typography
                         variant="title"
-                        component="h1"
+                        component="h2"
                         color="primary"
                         paragraph
                         style={{ marginBottom: 30 }}
