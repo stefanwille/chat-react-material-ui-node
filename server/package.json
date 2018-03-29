@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "cors": "^2.8.4",
+    "daemonize2": "^0.4.2",
     "express": "^4.16.3",
     "nodemon": "^1.17.2",
     "socket.io": "^2.0.4"
