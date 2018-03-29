@@ -4,7 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon src/index.js"
+    "start": "nodemon src/index.js",
+    "deploy": "./deploy.sh",
+    "start-production": "NODE_ENV=production node src/daemon.js start",
+    "stop-production": "NODE_ENV=production node src/daemon.js stop"
   },
   "dependencies": {
     "cors": "^2.8.4",
