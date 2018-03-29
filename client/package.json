@@ -1,5 +1,5 @@
 {
-  "name": "chat-react-material-ui-node",
+  "name": "chat-react-material-ui-node-client",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:5000/",
@@ -7,7 +7,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "yarn build && rsync -avz --delete -e ssh --progress build/ sw:/home/www-data/sites/chatdemo.stefanwille.com/client/build/"
   },
   "dependencies": {
     "date-fns": "^1.29.0",
