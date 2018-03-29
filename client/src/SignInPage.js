@@ -26,9 +26,10 @@ class SignInPage extends React.Component {
               <Form
                 onSubmit={onSubmit}
                 validate={values => {
-                  if (!values.userName) return 'userName missing';
-                  if (!values.avatarUrl) return 'avatarUrl missing';
-                  return undefined;
+                  const errors = {};
+                  if (!values.userName) errors.userName = 'Missing';
+                  if (!values.avatarUrl) errors.avatarUrl = 'Missing';
+                  return errors;
                 }}
                 render={({ handleSubmit, pristine, invalid, reset }) => {
                   return (
@@ -52,20 +53,25 @@ class SignInPage extends React.Component {
                       </Typography>
                       <Field
                         name="userName"
-                        render={({ input, meta }) => (
-                          <TextField
-                            label="Username"
-                            style={{ display: 'block' }}
-                            margin="dense"
-                            {...input}
-                          />
-                        )}
+                        render={({ input, meta }) => {
+                          console.log(meta);
+                          return (
+                            <TextField
+                              label="Username"
+                              style={{ display: 'block' }}
+                              margin="dense"
+                              error={!!(meta.touched && meta.error)}
+                              {...input}
+                            />
+                          );
+                        }}
                       />
                       <Field
                         name="avatarUrl"
                         render={({ input, meta }) => (
                           <FormControl
                             style={{ display: 'block', marginBottom: 30 }}
+                            error={!!(meta.touched && meta.error)}
                           >
                             <InputLabel htmlFor="avatar">Avatar</InputLabel>
                             <Select style={{ minWidth: 80 }} {...input}>
