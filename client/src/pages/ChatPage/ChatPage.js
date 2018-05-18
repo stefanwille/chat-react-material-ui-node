@@ -1,20 +1,21 @@
-import React from 'react';
-import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
-import MessageList from './MessageList';
-import InputArea from './InputArea';
-import { connect } from 'react-redux';
-import { getUser } from './redux/modules/user';
-import { getMessages, addMessage } from './redux/modules/messages';
-import Button from 'material-ui/Button';
-import { withRouter } from 'react-router-dom';
-import io from 'socket.io-client';
-import uuidv1 from 'uuid/v1';
+import React from "react";
+import { connect } from "react-redux";
+import Grid from "material-ui/Grid";
+import Paper from "material-ui/Paper";
+import uuidv1 from "uuid/v1";
+import Button from "material-ui/Button";
+import { withRouter } from "react-router-dom";
+import io from "socket.io-client";
+
+import MessageList from "./MessageList";
+import InputArea from "./InputArea";
+import { getUser } from "../../redux/modules/user";
+import { getMessages, addMessage } from "../../redux/modules/messages";
 
 class ChatPage extends React.Component {
   componentDidMount() {
     this.socket = io();
-    this.socket.on('chat message', this.props.onMessageReceived);
+    this.socket.on("chat message", this.props.onMessageReceived);
   }
 
   onSubmit = formValues => {
@@ -23,7 +24,7 @@ class ChatPage extends React.Component {
     const { text } = formValues;
     const message = { id, user, text, timestamp: new Date() };
     onMessageSubmitted(message);
-    this.socket.emit('chat message', message);
+    this.socket.emit("chat message", message);
   };
 
   render() {
@@ -34,7 +35,7 @@ class ChatPage extends React.Component {
         <Grid item style={{ flexGrow: 1, maxWidth: 1000 }}>
           <Grid container>
             <Grid item xs={12}>
-              <div style={{ textAlign: 'right', marginBottom: 30 }}>
+              <div style={{ textAlign: "right", marginBottom: 30 }}>
                 <Button color="default" onClick={onSignOut}>
                   Sign Out
                 </Button>
@@ -63,7 +64,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     dispatch,
     onSignOut() {
       const { history } = ownProps;
-      history.push('/');
+      history.push("/");
     }
   };
 }
@@ -76,11 +77,11 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
     ...dispatchProps,
     ...ownProps,
     onMessageSubmitted(message) {
-      console.log('message submitted', message);
+      console.log("message submitted", message);
       dispatch(addMessage(message));
     },
     onMessageReceived(message) {
-      console.log('message received', message);
+      console.log("message received", message);
       dispatch(addMessage(message));
     }
   };

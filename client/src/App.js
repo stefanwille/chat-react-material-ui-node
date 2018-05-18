@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SignInPage from "./pages/SignInPage";
-import ChatPage from "./ChatPage";
+import ChatPage from "./pages/ChatPage";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import createReduxStore from "./redux/createReduxStore";
 import { Provider } from "react-redux";
