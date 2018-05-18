@@ -1,18 +1,18 @@
-import React from 'react';
-import Paper from 'material-ui/Paper';
-import STOCK_AVATARS from './StockAvatars';
-import Typography from 'material-ui/Typography';
-import TextField from 'material-ui/TextField';
-import Grid from 'material-ui/Grid';
-import { Form, Field } from 'react-final-form';
-import Button from 'material-ui/Button';
-import { FormControl } from 'material-ui/Form';
-import { InputLabel } from 'material-ui/Input';
-import Select from 'material-ui/Select';
-import { MenuItem } from 'material-ui/Menu';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { setUser } from './redux/modules/user';
+import React from "react";
+import Paper from "material-ui/Paper";
+import STOCK_AVATARS from "../../components/StockAvatars";
+import Typography from "material-ui/Typography";
+import TextField from "material-ui/TextField";
+import Grid from "material-ui/Grid";
+import { Form, Field } from "react-final-form";
+import Button from "material-ui/Button";
+import { FormControl } from "material-ui/Form";
+import { InputLabel } from "material-ui/Input";
+import Select from "material-ui/Select";
+import { MenuItem } from "material-ui/Menu";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { setUser } from "../../redux/modules/user";
 
 class SignInPage extends React.Component {
   render() {
@@ -27,13 +27,13 @@ class SignInPage extends React.Component {
                 elevation={1}
                 style={{
                   padding: 25,
-                  backgroundColor: '#3f51b5'
+                  backgroundColor: "#3f51b5"
                 }}
               >
                 <Typography
                   variant="title"
                   component="h1"
-                  style={{ fontSize: 30, textAlign: 'center', color: 'white' }}
+                  style={{ fontSize: 30, textAlign: "center", color: "white" }}
                 >
                   Chat Demo
                 </Typography>
@@ -43,8 +43,8 @@ class SignInPage extends React.Component {
                 onSubmit={onSubmit}
                 validate={values => {
                   const errors = {};
-                  if (!values.userName) errors.userName = 'Missing';
-                  if (!values.avatarUrl) errors.avatarUrl = 'Missing';
+                  if (!values.userName) errors.userName = "Missing";
+                  if (!values.avatarUrl) errors.avatarUrl = "Missing";
                   return errors;
                 }}
                 render={({ handleSubmit, pristine, invalid, reset }) => {
@@ -74,7 +74,7 @@ class SignInPage extends React.Component {
                           return (
                             <TextField
                               label="Username"
-                              style={{ display: 'block' }}
+                              style={{ display: "block" }}
                               margin="dense"
                               error={!!(meta.touched && meta.error)}
                               {...input}
@@ -86,7 +86,7 @@ class SignInPage extends React.Component {
                         name="avatarUrl"
                         render={({ input, meta }) => (
                           <FormControl
-                            style={{ display: 'block', marginBottom: 30 }}
+                            style={{ display: "block", marginBottom: 30 }}
                             error={!!(meta.touched && meta.error)}
                           >
                             <InputLabel htmlFor="avatar">Avatar</InputLabel>
@@ -129,7 +129,7 @@ function mapDispatchToProps(dispatch, ownProps) {
   return {
     onSubmit(formValues) {
       dispatch(setUser(formValues));
-      history.push('/chat');
+      history.push("/chat");
     }
   };
 }

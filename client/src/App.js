@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import SignInPage from './SignInPage';
-import ChatPage from './ChatPage';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import createReduxStore from './redux/createReduxStore';
-import { Provider } from 'react-redux';
+import React, { Component } from "react";
+import SignInPage from "./pages/SignInPage";
+import ChatPage from "./ChatPage";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import createReduxStore from "./redux/createReduxStore";
+import { Provider } from "react-redux";
 
 class App extends Component {
   render() {
