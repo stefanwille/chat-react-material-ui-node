@@ -14,27 +14,35 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import { Form, Field } from "react-final-form";
+import classNames from "classnames";
 
 import { setUser } from "../../redux/modules/user";
 import STOCK_AVATARS from "../../components/StockAvatars";
 
-console.log("STOCK", STOCK_AVATARS);
-
-const avatarItems = STOCK_AVATARS.map((url, index) => (
-  <MenuItem key={index} value={url}>
-    <img src={url} alt="avatar" style={{ maxWidth: 32 }} />
-  </MenuItem>
-));
-
 const styles = {
+  userName: {
+    width: 140
+  },
   avatar: {
-    // minHeight: 100
-  }
+    minWidth: 100,
+    minHeight: 49
+  },
+  avatarSelect: {},
+  avatarMenuItem: {},
+  avatarSelectMenu: {},
+  avatarIcon: {},
+  avatarImg: { width: 32 }
 };
 
 class SignInPage extends React.Component {
   render() {
     const { onSubmit, classes } = this.props;
+
+    const avatarItems = STOCK_AVATARS.map((url, index) => (
+      <MenuItem key={index} value={url} className={classes.avatarMenuItem}>
+        <img src={url} alt="avatar" className={classes.avatarImg} />
+      </MenuItem>
+    ));
 
     return (
       <Grid container justify="center">
@@ -88,7 +96,6 @@ class SignInPage extends React.Component {
                       <Field
                         name="userName"
                         render={({ input, meta }) => {
-                          console.log(meta);
                           return (
                             <TextField
                               label="Username"
@@ -96,6 +103,7 @@ class SignInPage extends React.Component {
                               margin="dense"
                               error={!!(meta.touched && meta.error)}
                               {...input}
+                              inputProps={{ className: classes.userName }}
                             />
                           );
                         }}
@@ -109,9 +117,17 @@ class SignInPage extends React.Component {
                           >
                             <InputLabel htmlFor="avatar">Avatar</InputLabel>
                             <Select
-                              style={{ minWidth: 80 }}
                               {...input}
-                              // className={classes.avatar}
+                              classes={{
+                                root: classNames(
+                                  input.className,
+                                  classes.avatar
+                                ),
+                                select: classes.avatarSelect,
+                                selectMenu: classes.avatarSelectMenu,
+                                icon: classes.avatarIcon
+                              }}
+                              autoWidth
                             >
                               {avatarItems}
                             </Select>
