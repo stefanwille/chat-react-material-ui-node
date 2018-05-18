@@ -4,7 +4,8 @@ A chat based on
 
 * React.js
 * Material-UI
-* socket.io / websockets
+* Socket.io / Websockets
+* Express
 * Node.js
 * letsencrypt
 
