@@ -1,14 +1,14 @@
-import React from 'react';
-import Button from 'material-ui/Button';
-import TextField from 'material-ui/TextField';
-import Grid from 'material-ui/Grid';
-import { Form, Field } from 'react-final-form';
+import React from "react";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
+import { Form, Field } from "react-final-form";
 
 const InputArea = ({ onSubmit }) => (
   <Form
     onSubmit={onSubmit}
     validate={values => {
-      return !values.text ? 'text missing' : undefined;
+      return !values.text ? "text missing" : undefined;
     }}
     render={({ handleSubmit, pristine, invalid, reset }) => {
       return (
@@ -20,7 +20,7 @@ const InputArea = ({ onSubmit }) => (
                 label="Your Message"
                 style={{ flexGrow: 1 }}
                 onKeyDown={event => {
-                  if (event.key === 'Enter') {
+                  if (event.key === "Enter") {
                     handleSubmit();
                     reset();
                   }

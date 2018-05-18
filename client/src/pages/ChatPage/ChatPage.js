@@ -1,9 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import Grid from "material-ui/Grid";
-import Paper from "material-ui/Paper";
+
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
+
 import uuidv1 from "uuid/v1";
-import Button from "material-ui/Button";
 import { withRouter } from "react-router-dom";
 import io from "socket.io-client";
 

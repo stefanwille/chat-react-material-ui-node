@@ -1,22 +1,40 @@
 import React from "react";
-import Paper from "material-ui/Paper";
-import STOCK_AVATARS from "../../components/StockAvatars";
-import Typography from "material-ui/Typography";
-import TextField from "material-ui/TextField";
-import Grid from "material-ui/Grid";
-import { Form, Field } from "react-final-form";
-import Button from "material-ui/Button";
-import { FormControl } from "material-ui/Form";
-import { InputLabel } from "material-ui/Input";
-import Select from "material-ui/Select";
-import { MenuItem } from "material-ui/Menu";
+
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { withStyles } from "@material-ui/core/styles";
+import { Form, Field } from "react-final-form";
+
 import { setUser } from "../../redux/modules/user";
+import STOCK_AVATARS from "../../components/StockAvatars";
+
+console.log("STOCK", STOCK_AVATARS);
+
+const avatarItems = STOCK_AVATARS.map((url, index) => (
+  <MenuItem key={index} value={url}>
+    <img src={url} alt="avatar" style={{ maxWidth: 32 }} />
+  </MenuItem>
+));
+
+const styles = {
+  avatar: {
+    // minHeight: 100
+  }
+};
 
 class SignInPage extends React.Component {
   render() {
-    const { onSubmit } = this.props;
+    const { onSubmit, classes } = this.props;
 
     return (
       <Grid container justify="center">
@@ -90,16 +108,12 @@ class SignInPage extends React.Component {
                             error={!!(meta.touched && meta.error)}
                           >
                             <InputLabel htmlFor="avatar">Avatar</InputLabel>
-                            <Select style={{ minWidth: 80 }} {...input}>
-                              {STOCK_AVATARS.map((url, index) => (
-                                <MenuItem key={index} value={url}>
-                                  <img
-                                    src={url}
-                                    alt="avatar"
-                                    style={{ maxWidth: 32 }}
-                                  />
-                                </MenuItem>
-                              ))}
+                            <Select
+                              style={{ minWidth: 80 }}
+                              {...input}
+                              // className={classes.avatar}
+                            >
+                              {avatarItems}
                             </Select>
                           </FormControl>
                         )}
@@ -134,4 +148,6 @@ function mapDispatchToProps(dispatch, ownProps) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(withRouter(SignInPage));
+export default connect(null, mapDispatchToProps)(
+  withRouter(withStyles(styles)(SignInPage))
+);

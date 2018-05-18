@@ -1,13 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import Typography from 'material-ui/Typography';
-import Grid from 'material-ui/Grid';
-import { format } from 'date-fns';
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import { format } from "date-fns";
 
 const Message = ({ message }) => {
-  const { user: { avatarUrl, userName }, timestamp, text } = message;
+  const {
+    user: { avatarUrl, userName },
+    timestamp,
+    text
+  } = message;
   return (
-    <Grid container style={{ justifyContent: 'flex-start' }}>
+    <Grid container style={{ justifyContent: "flex-start" }}>
       <img
         style={{ maxWidth: 32, maxHeight: 32, marginRight: 5 }}
         src={avatarUrl}
@@ -16,12 +20,12 @@ const Message = ({ message }) => {
       <div>
         <Typography
           variant="body2"
-          style={{ display: 'inline-block', marginRight: 5 }}
+          style={{ display: "inline-block", marginRight: 5 }}
         >
           {userName}
         </Typography>
-        <Typography variant="caption" style={{ display: 'inline-block' }}>
-          {format(timestamp, 'HH:mm')}
+        <Typography variant="caption" style={{ display: "inline-block" }}>
+          {format(timestamp, "HH:mm")}
         </Typography>
         <Typography variant="body1" paragraph>
           {text}
