@@ -17,6 +17,16 @@ jobs:
     working_directory: ~/repo
 
     steps:
+      - add_ssh_keys
+      - run:
+          name: Fix ssh server host to ~/.ssh/known_hosts
+          command: |
+            ssh-keyscan 88.99.14.3 >> ~/.ssh/known_hosts
+
+      - run:
+          name: Install rsync
+          command: sudo apt install -y rsync
+
       - checkout
 
       # Download and cache dependencies
@@ -37,5 +47,18 @@ jobs:
         
       # run tests!
       - run: cd client && yarn test
+      - run: cd client && yarn build
 
+      - run:
+          name: Deploy server
+          command: |
+            if [ $CIRCLE_BRANCH = 'master' ]; then
+              cd server && yarn deploy
+            fi
+      - run:
+          name: Deploy client
+          command: |
+            if [ $CIRCLE_BRANCH = 'master' ]; then
+              cd client && yarn deploy
+            fi
 
