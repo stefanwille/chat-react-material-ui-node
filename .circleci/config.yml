@@ -50,13 +50,13 @@ jobs:
       - run: cd client && yarn build
 
       - run:
-          name: Deploy server
+          name: Deploy server/ to server
           command: |
             if [ $CIRCLE_BRANCH = 'master' ]; then
               cd server && yarn deploy
             fi
       - run:
-          name: Deploy client
+          name: Deploy client/ to server
           command: |
             if [ $CIRCLE_BRANCH = 'master' ]; then
               cd client && yarn deploy
