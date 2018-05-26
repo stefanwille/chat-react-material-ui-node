@@ -10,7 +10,7 @@ const InputArea = ({ onSubmit }) => (
     validate={values => {
       return !values.text ? "text missing" : undefined;
     }}
-    render={({ handleSubmit, pristine, invalid, reset }) => {
+    render={({ handleSubmit, pristine, invalid, form: { reset } }) => {
       return (
         <Grid container style={{ marginTop: 10 }}>
           <Field
