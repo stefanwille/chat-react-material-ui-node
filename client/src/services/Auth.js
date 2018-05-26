@@ -1,7 +1,7 @@
 import auth0 from "auth0-js";
 
 class Auth {
-  auth0 = new auth0.WebAuth({
+  webAuth = new auth0.WebAuth({
     domain: "chatdemo.eu.auth0.com",
     clientID: "gqLDEMxRZ1pm8lAn7LtnD5NXWyjvq5Zy",
     redirectUri: "http://localhost:3000/callback",
@@ -18,11 +18,11 @@ class Auth {
   }
 
   login() {
-    this.auth0.authorize();
+    this.webAuth.authorize();
   }
 
   handleAuthentication(history) {
-    this.auth0.parseHash((err, authResult) => {
+    this.webAuth.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(history, authResult);
         history.push("/chat");
@@ -41,6 +41,14 @@ class Auth {
     localStorage.setItem("access_token", authResult.accessToken);
     localStorage.setItem("id_token", authResult.idToken);
     localStorage.setItem("expires_at", expiresAt);
+
+    console.log("id_token", authResult.idToken);
+
+    this.webAuth.client.userInfo(authResult.accessToken, function(error, user) {
+      // Now you have the user's information
+      console.log("error", error, "user", user);
+    });
+
     // navigate to the home route
     history.push("/");
   }

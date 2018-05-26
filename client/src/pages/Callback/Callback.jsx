@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import loading from "./loading.svg";
 import "./Callback.css";
 import Auth from "../../services/Auth";
 import { withRouter } from "react-router";

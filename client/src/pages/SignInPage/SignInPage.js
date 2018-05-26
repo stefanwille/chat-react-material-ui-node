@@ -4,7 +4,6 @@ import { withRouter } from "react-router-dom";
 import { Redirect } from "react-router";
 
 import Auth from "../../services/Auth";
-import { setUser } from "../../redux/modules/user";
 
 class SignInPage extends React.Component {
   render() {
