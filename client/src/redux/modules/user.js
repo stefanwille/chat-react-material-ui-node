@@ -1,7 +1,11 @@
 const AVATAR_STEFAN =
   "https://www.xing.com/image/b_b_6_d7a970ff7_3538231_6/stefan-wille-foto.1024x1024.jpg";
 
-const INITIAL_STATE = { userName: "stefan", avatarUrl: AVATAR_STEFAN };
+const INITIAL_STATE = {
+  userId: 331756,
+  userName: "stefan",
+  avatarUrl: AVATAR_STEFAN,
+};
 
 export function setUser(user) {
   return {

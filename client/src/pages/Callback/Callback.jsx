@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import "./Callback.css";
 import Auth from "../../services/Auth";
 import { withRouter } from "react-router";
@@ -8,8 +9,23 @@ import { connect } from "react-redux";
 const auth = new Auth();
 
 const mapDispatchToProps = dispatch => ({
-  onLoggedIn: userId => {
-    console.log("onLoggedIn", userId);
+  onLoggedIn: async auth0User => {
+    console.log("onLoggedIn", auth0User);
+    const { sub: auth0ProviderAndUserId } = auth0User;
+    const [provider, auth0UserId] = auth0ProviderAndUserId.split("|");
+    console.log("onLoggedIn", provider, auth0UserId);
+    const response = await axios.get(
+      `https://api.github.com/user/${auth0UserId}`,
+    );
+    const gitHubUser = response.data;
+    const user = {
+      userId: gitHubUser.id,
+      userName: gitHubUser.name,
+      avatarUrl: gitHubUser.avatar_url,
+    };
+    console.log("onLoggedIn githubuser", gitHubUser, "user", user);
+
+    dispatch(setUser(user));
   },
 });
 
