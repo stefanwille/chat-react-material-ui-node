@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import HomePage from "./pages/HomePage";
 import SignInPage from "./pages/SignInPage";
 import ChatPage from "./pages/ChatPage";
 import Callback from "./pages/Callback";
@@ -15,6 +16,7 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App" style={{ marginTop: 40 }}>
+            <Route exact path="/" component={HomePage} />
             <Route exact path="/login" component={SignInPage} />
             <Route path="/chat" component={ChatPage} />
             <Route path="/callback" component={Callback} />
