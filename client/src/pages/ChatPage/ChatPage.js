@@ -14,6 +14,7 @@ import InputArea from "./InputArea";
 import { getUser } from "../../redux/modules/user";
 import { getMessages, addMessage } from "../../redux/modules/messages";
 import Auth from "../../services/Auth";
+import { removeUser } from "../../redux/modules/user";
 
 const auth = new Auth();
 
@@ -70,6 +71,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     onSignOut() {
       const { history } = ownProps;
       auth.logout(history);
+      dispatch(removeUser());
       history.push("/login");
     },
   };

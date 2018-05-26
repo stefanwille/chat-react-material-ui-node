@@ -21,10 +21,10 @@ class Auth {
     this.webAuth.authorize();
   }
 
-  handleAuthentication(history) {
+  handleAuthentication(history, onLoggedIn) {
     this.webAuth.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
-        this.setSession(history, authResult);
+        this.setSession(history, authResult, onLoggedIn);
         history.push("/chat");
       } else if (err) {
         history.push("/chat");
@@ -33,7 +33,7 @@ class Auth {
     });
   }
 
-  setSession(history, authResult) {
+  setSession(history, authResult, onLoggedIn) {
     // Set the time that the Access Token will expire at
     let expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime(),
@@ -47,6 +47,9 @@ class Auth {
     this.webAuth.client.userInfo(authResult.accessToken, function(error, user) {
       // Now you have the user's information
       console.log("error", error, "user", user);
+      if (user) {
+        onLoggedIn(user);
+      }
     });
 
     // navigate to the home route
