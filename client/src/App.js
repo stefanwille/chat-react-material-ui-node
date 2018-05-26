@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <div className="App" style={{ marginTop: 40 }}>
+          <div className="App">
             <Route exact path="/" component={HomePage} />
             <Route exact path="/login" component={SignInPage} />
             <Route path="/chat" component={ChatPage} />
