@@ -18,24 +18,36 @@ import classNames from "classnames";
 
 import { setUser } from "../../redux/modules/user";
 import STOCK_AVATARS from "../../components/StockAvatars";
+import Auth from "../../services/Auth";
+import { Redirect } from "react-router";
 
 const styles = {
   userName: {
-    width: 140
+    width: 140,
   },
   avatar: {
     minWidth: 100,
-    minHeight: 49
+    minHeight: 49,
   },
   avatarSelect: {},
   avatarMenuItem: {},
   avatarSelectMenu: {},
   avatarIcon: {},
-  avatarImg: { width: 32 }
+  avatarImg: { width: 32 },
 };
 
 class SignInPage extends React.Component {
   render() {
+    const auth = new Auth();
+    if (!auth.isAuthenticated()) {
+      console.log("not authenticated");
+      auth.login();
+      return null;
+    }
+
+    console.log("authenticated");
+    return <Redirect to="/chat" />;
+
     const { onSubmit, classes } = this.props;
 
     const avatarItems = STOCK_AVATARS.map((url, index) => (
@@ -53,7 +65,7 @@ class SignInPage extends React.Component {
                 elevation={1}
                 style={{
                   padding: 25,
-                  backgroundColor: "#3f51b5"
+                  backgroundColor: "#3f51b5",
                 }}
               >
                 <Typography
@@ -121,11 +133,11 @@ class SignInPage extends React.Component {
                               classes={{
                                 root: classNames(
                                   input.className,
-                                  classes.avatar
+                                  classes.avatar,
                                 ),
                                 select: classes.avatarSelect,
                                 selectMenu: classes.avatarSelectMenu,
-                                icon: classes.avatarIcon
+                                icon: classes.avatarIcon,
                               }}
                               autoWidth
                             >
@@ -160,10 +172,10 @@ function mapDispatchToProps(dispatch, ownProps) {
     onSubmit(formValues) {
       dispatch(setUser(formValues));
       history.push("/chat");
-    }
+    },
   };
 }
 
 export default connect(null, mapDispatchToProps)(
-  withRouter(withStyles(styles)(SignInPage))
+  withRouter(withStyles(styles)(SignInPage)),
 );
