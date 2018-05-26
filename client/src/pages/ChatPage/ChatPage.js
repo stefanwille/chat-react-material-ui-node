@@ -13,6 +13,9 @@ import MessageList from "./MessageList";
 import InputArea from "./InputArea";
 import { getUser } from "../../redux/modules/user";
 import { getMessages, addMessage } from "../../redux/modules/messages";
+import Auth from "../../services/Auth";
+
+const auth = new Auth();
 
 class ChatPage extends React.Component {
   componentDidMount() {
@@ -57,7 +60,7 @@ class ChatPage extends React.Component {
 function mapStateToProps(state) {
   return {
     user: getUser(state),
-    messages: getMessages(state)
+    messages: getMessages(state),
   };
 }
 
@@ -66,8 +69,9 @@ function mapDispatchToProps(dispatch, ownProps) {
     dispatch,
     onSignOut() {
       const { history } = ownProps;
-      history.push("/");
-    }
+      auth.logout(history);
+      history.push("/login");
+    },
   };
 }
 
@@ -85,10 +89,10 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
     onMessageReceived(message) {
       console.log("message received", message);
       dispatch(addMessage(message));
-    }
+    },
   };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(
-  withRouter(ChatPage)
+  withRouter(ChatPage),
 );

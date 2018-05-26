@@ -1,6 +1,7 @@
 .Callback {
   height: 100vh;
-  background-color: blue;
-  vertical-align: middle;
-  text-align: center;
+  background-color: hsla(240, 8%, 15%, 0.94);
+  background-image: radial-gradient(hsl(240, 8%, 27%), hsl(240, 17%, 8%));
+  background-position-x: initial;
+  background-position-y: initial;
 }

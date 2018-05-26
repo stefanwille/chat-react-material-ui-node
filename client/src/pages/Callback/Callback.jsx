@@ -13,11 +13,7 @@ class Callback extends Component {
       auth.handleAuthentication(history);
     }
 
-    return (
-      <div className="Callback">
-        <img src={loading} alt="loading" />
-      </div>
-    );
+    return <div className="Callback" />;
   }
 }
 
