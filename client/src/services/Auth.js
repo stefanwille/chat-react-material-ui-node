@@ -4,7 +4,7 @@ class Auth {
   webAuth = new auth0.WebAuth({
     domain: "chatdemo.eu.auth0.com",
     clientID: "gqLDEMxRZ1pm8lAn7LtnD5NXWyjvq5Zy",
-    redirectUri: "http://localhost:3000/callback",
+    redirectUri: `${window.location.origin}/callback`,
     audience: "https://chatdemo.eu.auth0.com/userinfo",
     responseType: "token id_token",
     scope: "openid",

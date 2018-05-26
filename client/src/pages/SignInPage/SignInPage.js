@@ -8,14 +8,12 @@ import Auth from "../../services/Auth";
 class SignInPage extends React.Component {
   render() {
     const auth = new Auth();
-    if (!auth.isAuthenticated()) {
-      console.log("not authenticated");
-      auth.login();
-      return null;
+    if (auth.isAuthenticated()) {
+      return <Redirect to="/chat" />;
     }
 
-    console.log("authenticated");
-    return <Redirect to="/chat" />;
+    auth.login();
+    return null;
   }
 }
 

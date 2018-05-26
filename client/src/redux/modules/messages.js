@@ -1,27 +1,22 @@
-import STOCK_AVATARS from "../../components/StockAvatars";
-
-const marissa = { userName: "marissa", avatarUrl: STOCK_AVATARS[2] };
-const jennifer = { userName: "jennifer", avatarUrl: STOCK_AVATARS[3] };
-
 const INITIAL_STATE = [
-  {
-    id: 2,
-    user: marissa,
-    timestamp: new Date(),
-    text: "Cool, das funktioniert."
-  },
-  {
-    id: 3,
-    user: jennifer,
-    timestamp: new Date(),
-    text: "Cool, das funktioniert."
-  }
+  // {
+  //   id: 2,
+  //   user: marissa,
+  //   timestamp: new Date(),
+  //   text: "Cool, das funktioniert."
+  // },
+  // {
+  //   id: 3,
+  //   user: jennifer,
+  //   timestamp: new Date(),
+  //   text: "Cool, das funktioniert."
+  // }
 ];
 
 export function addMessage(message) {
   return {
     type: "ADD_MESSAGE",
-    payload: message
+    payload: message,
   };
 }
 
