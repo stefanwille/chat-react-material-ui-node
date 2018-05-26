@@ -1,3 +1,3 @@
 module.exports = {
-  // setupTestFrameworkScriptFile: "./src/test/browserMocks.js",
+  setupTestFramewosdrkScriptFile: "./src/test/browserMockssef.js",
 };

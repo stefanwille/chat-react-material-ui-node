@@ -9,11 +9,9 @@ class HomePage extends React.Component {
   render() {
     const auth = new Auth();
     if (auth.isAuthenticated()) {
-      console.log("authenticated");
       return <Redirect to="/chat" />;
     }
 
-    console.log("not authenticated");
     return <Redirect to="/login" />;
   }
 }
