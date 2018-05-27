@@ -28,7 +28,7 @@ class Auth {
         history.push("/chat");
       } else if (err) {
         history.push("/chat");
-        console.log(err);
+        console.error("handleAuthentication err", err);
       }
     });
   }
